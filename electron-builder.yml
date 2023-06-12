@@ -1,0 +1,51 @@
+appId: 'arkaniazlauncher'
+productName: 'ArkaniaZ Launcher DayZ'
+artifactName: '${productName}-setup-${version}.${ext}'
+
+copyright: 'Copyright © 2013-2023 Creat789'
+
+asar: true
+compression: 'maximum'
+
+files:
+  - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,.eslintrc.json}'
+
+extraResources:
+  - 'libraries'
+
+# Windows Configuration
+win: 
+  target: 
+    - target: 'nsis'
+      arch: 'x64'
+
+# Windows Installer Configuration
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+
+# macOS Configuration
+mac:
+  target:
+    - target: 'dmg'
+      arch:
+        - 'x64'
+        - 'arm64'
+  artifactName: '${productName}-setup-${version}-${arch}.${ext}'
+  category: 'public.app-category.games'
+
+# Linux Configuration
+linux: 
+  target: 'AppImage'
+  maintainer: 'Creat789'
+  vendor: 'Creat789'
+  synopsis: 'Modded DayZ Minecraft Launcher'
+  description: 'Modded DayZ Minecraft Launcher'
+  category: 'Game'
+
+
+directories:
+  buildResources: 'build'
+  output: 'dist'
