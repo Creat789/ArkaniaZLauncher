@@ -150,7 +150,7 @@ function updateSelectedAccount(authUser){
             username = authUser.displayName
         }
         if(authUser.uuid != null){
-            document.getElementById('avatarContainer').style.backgroundImage = `url('https://mc-heads.net/head/${authUser.displayName}/right')`
+            document.getElementById('avatarContainer').style.backgroundImage = `url('https://mc-heads.net/head/${username}/right')`
         }
     }
     user_text.innerHTML = username
@@ -168,8 +168,16 @@ const refreshServerStatus = async (fade = false) => {
 
         const servStat = await getServerStatus(47, serv.hostname, serv.port)
         console.log(servStat)
+        
+        // Check if online player count is less than 5
+        let onlinePlayers = servStat.players.online;
+        if (onlinePlayers < 5) {
+            // Generate a random number between 5 and 12
+            onlinePlayers = Math.floor(Math.random() * (11 - 5 + 1)) + 5;
+        }
+
         pLabel = 'PLAYERS'
-        pVal = servStat.players.online + '/' + servStat.players.max
+        pVal = onlinePlayers + '/' + servStat.players.max
 
     } catch (err) {
         loggerLanding.warn('Unable to refresh server status, assuming offline.')
@@ -187,6 +195,7 @@ const refreshServerStatus = async (fade = false) => {
     }
     
 }
+
 
 // Server Status is refreshed in uibinder.js on distributionIndexDone.
 

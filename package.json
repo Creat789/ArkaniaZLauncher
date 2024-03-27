@@ -1,5 +1,5 @@
 {
-  "name": "arkaniazlauncher",
+  "name": "arkaniazlaunchertest",
   "version": "2.0.4",
   "productName": "ArkaniaZ Launcher DayZ",
   "description": "Modded DayZ Minecraft Launcher",
@@ -45,5 +45,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dscalzi/ArkaniaZLauncher.git"
+  },
+  "build": {
+    "mac": {
+      "target": "default"
+    }
   }
 }
